@@ -5,27 +5,340 @@
         
     </head>
     <body>
-        <header>
-            <h1>Motorman Interactive</h1>
-        </header>
-        <div class = "situation">
-            <table>
-                <tr>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-                    <td><span class="dot"></span></td>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-                    <td><span>0</span></td>
-            </table>
-
+        <div class = "container">
+            <header>
+                <h1>Motorman Interactive</h1>
+            </header>
+            <div class="displayBox">
+                <p id="demo">W & S keys control Movement
+                <br>Q to go to the next page</p>
+            </div>
+            <div class="buttons">
+                <button id="btnStart">start</button>
+                <button id="btnNext">next</button>
+                <button id="btnStartTime">startTime</button>
+                <button id="btnStopTime">stopTime</button>
+            </div>
+            <div class = "container-table">
+                <div class = "table">
+                    <table id="table" class="divTable">
+                        <!--row 0-->
+                        <tr>
+                            <td><span id="0-0" class="node">0</span></td>
+                            <td><span id="0-1" class="node">0</span></td>
+                            <td><span id="0-2" class="node">0</span></td>
+                            <td><span id="0-3" class="node">0</span></td>
+                            <td><span id=condition0 class="dot">-</span></td>
+                            <td><span id="0-4" class="node">0</span></td>
+                            <td><span id="0-5" class="node">0</span></td>
+                            <td><span id="0-6" class="node">0</span></td>
+                            <td><span id="0-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 1-->
+                        <tr>
+                            <td><span id="1-0" class="node">0</span></td>
+                            <td><span id="1-1" class="node">0</span></td>
+                            <td><span id="1-2" class="node">0</span></td>
+                            <td><span id="1-3" class="node">0</span></td>
+                            <td><span id="condition1" class="dot">-</span></td>
+                            <td><span id="1-4" class="node">0</span></td>
+                            <td><span id="1-5" class="node">0</span></td>
+                            <td><span id="1-6" class="node">0</span></td>
+                            <td><span id="1-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 2-->
+                        <tr>
+                            <td><span id="2-0" class="node">0</span></td>
+                            <td><span id="2-1" class="node">0</span></td>
+                            <td><span id="2-2" class="node">0</span></td>
+                            <td><span id="2-3" class="node">0</span></td>
+                            <td><span id="condition2" class="dot">-</span></td>
+                            <td><span id="2-4" class="node">0</span></td>
+                            <td><span id="2-5" class="node">0</span></td>
+                            <td><span id="2-6" class="node">0</span></td>
+                            <td><span id="2-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 3-->
+                        <tr>
+                            <td><span id="3-0" class="node">0</span></td>
+                            <td><span id="3-1" class="node">0</span></td>
+                            <td><span id="3-2" class="node">0</span></td>
+                            <td><span id="3-3" class="node">0</span></td>
+                            <td><span id="condition3" class="dot">-</span></td>
+                            <td><span id="3-4" class="node">0</span></td>
+                            <td><span id="3-5" class="node">0</span></td>
+                            <td><span id="3-6" class="node">0</span></td>
+                            <td><span id="3-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 4-->
+                        <tr>
+                            <td><span id="4-0" class="node">0</span></td>
+                            <td><span id="4-1" class="node">0</span></td>
+                            <td><span id="4-2" class="node">0</span></td>
+                            <td><span id="4-3" class="node">0</span></td>
+                            <td><span id="condition4" class="dot">-</span></td>
+                            <td><span id="4-4" class="node">0</span></td>
+                            <td><span id="4-5" class="node">0</span></td>
+                            <td><span id="4-6" class="node">0</span></td>
+                            <td><span id="4-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 5-->
+                        <tr>
+                            <td><span id="5-0" class="node">0</span></td>
+                            <td><span id="5-1" class="node">0</span></td>
+                            <td><span id="5-2" class="node">0</span></td>
+                            <td><span id="5-3" class="node">0</span></td>
+                            <td><span id="condition5" class="dot">-</span></td>
+                            <td><span id="5-4" class="node">0</span></td>
+                            <td><span id="5-5" class="node">0</span></td>
+                            <td><span id="5-6" class="node">0</span></td>
+                            <td><span id="5-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 6-->
+                        <tr>
+                            <td><span id="6-0" class="node">0</span></td>
+                            <td><span id="6-1" class="node">0</span></td>
+                            <td><span id="6-2" class="node">0</span></td>
+                            <td><span id="6-3" class="node">0</span></td>
+                            <td><span id="condition6" class="dot">-</span></td>
+                            <td><span id="6-4" class="node">0</span></td>
+                            <td><span id="6-5" class="node">0</span></td>
+                            <td><span id="6-6" class="node">0</span></td>
+                            <td><span id="6-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 7-->
+                        <tr>
+                            <td><span id="7-0" class="node">0</span></td>
+                            <td><span id="7-1" class="node">0</span></td>
+                            <td><span id="7-2" class="node">0</span></td>
+                            <td><span id="7-3" class="node">0</span></td>
+                            <td><span id="condition7" class="dot">-</span></td>
+                            <td><span id="7-4" class="node">0</span></td>
+                            <td><span id="7-5" class="node">0</span></td>
+                            <td><span id="7-6" class="node">0</span></td>
+                            <td><span id="7-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 8-->
+                        <tr>
+                            <td><span id="8-0" class="node">0</span></td>
+                            <td><span id="8-1" class="node">0</span></td>
+                            <td><span id="8-2" class="node">0</span></td>
+                            <td><span id="8-3" class="node">0</span></td>
+                            <td><span id="condition8" class="dot"></span></td>
+                            <td><span id="8-4" class="node">0</span></td>
+                            <td><span id="8-5" class="node">0</span></td>
+                            <td><span id="8-6" class="node">0</span></td>
+                            <td><span id="8-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 9-->
+                        <tr>
+                            <td><span id="9-0" class="node">0</span></td>
+                            <td><span id="9-1" class="node">0</span></td>
+                            <td><span id="9-2" class="node">0</span></td>
+                            <td><span id="9-3" class="node">0</span></td>
+                            <td><span id="condition9" class="dot"></span></td>
+                            <td><span id="9-4" class="node">0</span></td>
+                            <td><span id="9-5" class="node">0</span></td>
+                            <td><span id="9-6" class="node">0</span></td>
+                            <td><span id="9-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 10-->
+                        <tr>
+                            <td><span id="10-0" class="node">0</span></td>
+                            <td><span id="10-1" class="node">0</span></td>
+                            <td><span id="10-2" class="node">0</span></td>
+                            <td><span id="10-3" class="node">0</span></td>
+                            <td><span id="condition10" class="dot"></span></td>
+                            <td><span id="10-4" class="node">0</span></td>
+                            <td><span id="10-5" class="node">0</span></td>
+                            <td><span id="10-6" class="node">0</span></td>
+                            <td><span id="10-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 11-->
+                        <tr>
+                            <td><span id="11-0" class="node">0</span></td>
+                            <td><span id="11-1" class="node">0</span></td>
+                            <td><span id="11-2" class="node">0</span></td>
+                            <td><span id="11-3" class="node">0</span></td>
+                            <td><span id="condition11" class="dot"></span></td>
+                            <td><span id="11-4" class="node">0</span></td>
+                            <td><span id="11-5" class="node">0</span></td>
+                            <td><span id="11-6" class="node">0</span></td>
+                            <td><span id="11-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 12-->
+                        <tr>
+                            <td><span id="12-0" class="node">0</span></td>
+                            <td><span id="12-1" class="node">0</span></td>
+                            <td><span id="12-2" class="node">0</span></td>
+                            <td><span id="12-3" class="node">0</span></td>
+                            <td><span id="condition12" class="dot"></span></td>
+                            <td><span id="12-4" class="node">0</span></td>
+                            <td><span id="12-5" class="node">0</span></td>
+                            <td><span id="12-6" class="node">0</span></td>
+                            <td><span id="12-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 13-->
+                        <tr>
+                            <td><span id="13-0" class="node">0</span></td>
+                            <td><span id="13-1" class="node">0</span></td>
+                            <td><span id="13-2" class="node">0</span></td>
+                            <td><span id="13-3" class="node">0</span></td>
+                            <td><span id="condition13" class="dot"></span></td>
+                            <td><span id="13-4" class="node">0</span></td>
+                            <td><span id="13-5" class="node">0</span></td>
+                            <td><span id="13-6" class="node">0</span></td>
+                            <td><span id="13-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 14-->
+                        <tr>
+                            <td><span id="14-0" class="node">0</span></td>
+                            <td><span id="14-1" class="node">0</span></td>
+                            <td><span id="14-2" class="node">0</span></td>
+                            <td><span id="14-3" class="node">0</span></td>
+                            <td><span id="condition14" class="dot"></span></td>
+                            <td><span id="14-4" class="node">0</span></td>
+                            <td><span id="14-5" class="node">0</span></td>
+                            <td><span id="14-6" class="node">0</span></td>
+                            <td><span id="14-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 15-->
+                        <tr>
+                            <td><span id="15-0" class="node">0</span></td>
+                            <td><span id="15-1" class="node">0</span></td>
+                            <td><span id="15-2" class="node">0</span></td>
+                            <td><span id="15-3" class="node">0</span></td>
+                            <td><span id="condition15" class="dot"></span></td>
+                            <td><span id="15-4" class="node">0</span></td>
+                            <td><span id="15-5" class="node">0</span></td>
+                            <td><span id="15-6" class="node">0</span></td>
+                            <td><span id="15-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 16-->
+                        <tr>
+                            <td><span id="16-0" class="node">0</span></td>
+                            <td><span id="16-1" class="node">0</span></td>
+                            <td><span id="16-2" class="node">0</span></td>
+                            <td><span id="16-3" class="node">0</span></td>
+                            <td><span id="condition16" class="dot"></span></td>
+                            <td><span id="16-4" class="node">0</span></td>
+                            <td><span id="16-5" class="node">0</span></td>
+                            <td><span id="16-6" class="node">0</span></td>
+                            <td><span id="16-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 17-->
+                        <tr>
+                            <td><span id="17-0" class="node">0</span></td>
+                            <td><span id="17-1" class="node">0</span></td>
+                            <td><span id="17-2" class="node">0</span></td>
+                            <td><span id="17-3" class="node">0</span></td>
+                            <td><span id="condition17" class="dot"></span></td>
+                            <td><span id="17-4" class="node">0</span></td>
+                            <td><span id="17-5" class="node">0</span></td>
+                            <td><span id="17-6" class="node">0</span></td>
+                            <td><span id="17-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 18-->
+                        <tr>
+                            <td><span id="18-0" class="node">0</span></td>
+                            <td><span id="18-1" class="node">0</span></td>
+                            <td><span id="18-2" class="node">0</span></td>
+                            <td><span id="18-3" class="node">0</span></td>
+                            <td><span id="condition18" class="dot"></span></td>
+                            <td><span id="18-4" class="node">0</span></td>
+                            <td><span id="18-5" class="node">0</span></td>
+                            <td><span id="18-6" class="node">0</span></td>
+                            <td><span id="18-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 19-->
+                        <tr>
+                            <td><span id="19-0" class="node">0</span></td>
+                            <td><span id="19-1" class="node">0</span></td>
+                            <td><span id="19-2" class="node">0</span></td>
+                            <td><span id="19-3" class="node">0</span></td>
+                            <td><span id="condition19" class="dot"></span></td>
+                            <td><span id="19-4" class="node">0</span></td>
+                            <td><span id="19-5" class="node">0</span></td>
+                            <td><span id="19-6" class="node">0</span></td>
+                            <td><span id="19-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 20-->
+                        <tr>
+                            <td><span id="20-0" class="node">0</span></td>
+                            <td><span id="20-1" class="node">0</span></td>
+                            <td><span id="20-2" class="node">0</span></td>
+                            <td><span id="20-3" class="node">0</span></td>
+                            <td><span id="condition20" class="dot"></span></td>
+                            <td><span id="20-4" class="node">0</span></td>
+                            <td><span id="20-5" class="node">0</span></td>
+                            <td><span id="20-6" class="node">0</span></td>
+                            <td><span id="20-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 21-->
+                        <tr>
+                            <td><span id="21-0" class="node">0</span></td>
+                            <td><span id="21-1" class="node">0</span></td>
+                            <td><span id="21-2" class="node">0</span></td>
+                            <td><span id="21-3" class="node">0</span></td>
+                            <td><span id="condition21" class="dot"></span></td>
+                            <td><span id="21-4" class="node">0</span></td>
+                            <td><span id="21-5" class="node">0</span></td>
+                            <td><span id="21-6" class="node">0</span></td>
+                            <td><span id="21-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 22-->
+                        <tr>
+                            <td><span id="22-0" class="node">0</span></td>
+                            <td><span id="22-1" class="node">0</span></td>
+                            <td><span id="22-2" class="node">0</span></td>
+                            <td><span id="22-3" class="node">0</span></td>
+                            <td><span id="condition22" class="dot"></span></td>
+                            <td><span id="22-4" class="node">0</span></td>
+                            <td><span id="22-5" class="node">0</span></td>
+                            <td><span id="22-6" class="node">0</span></td>
+                            <td><span id="22-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 23-->
+                        <tr>
+                            <td><span id="23-0" class="node">0</span></td>
+                            <td><span id="23-1" class="node">0</span></td>
+                            <td><span id="23-2" class="node">0</span></td>
+                            <td><span id="23-3" class="node">0</span></td>
+                            <td><span id="condition23" class="dot"></span></td>
+                            <td><span id="23-4" class="node">0</span></td>
+                            <td><span id="23-5" class="node">0</span></td>
+                            <td><span id="23-6" class="node">0</span></td>
+                            <td><span id="23-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 24-->
+                        <tr>
+                            <td><span id="24-0" class="node">0</span></td>
+                            <td><span id="24-1" class="node">0</span></td>
+                            <td><span id="24-2" class="node">0</span></td>
+                            <td><span id="24-3" class="node">0</span></td>
+                            <td><span id="condition24" class="dot"></span></td>
+                            <td><span id="24-4" class="node">0</span></td>
+                            <td><span id="24-5" class="node">0</span></td>
+                            <td><span id="24-6" class="node">0</span></td>
+                            <td><span id="24-7" class="node">0</span></td>
+                        </tr>
+                        <!--row 25-->
+                        <tr>
+                            <td><span id="25-0" class="node">0</span></td>
+                            <td><span id="25-1" class="node">0</span></td>
+                            <td><span id="25-2" class="node">0</span></td>
+                            <td><span id="25-3" class="node">0</span></td>
+                            <td><span id="condition25" class="dot"></span></td>
+                            <td><span id="25-4" class="node">0</span></td>
+                            <td><span id="25-5" class="node">0</span></td>
+                            <td><span id="25-6" class="node">0</span></td>
+                            <td><span id="25-7" class="node">0</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-        <span class="dot"></span></th>
-        <button id="btnStart">start</button>
-        <p id="demo"></p>
-        <script src="motorman.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="motorman.js" charset="utf-8"></script>
     </body>
 </html>

@@ -3,33 +3,78 @@
     padding: 0px;
 }
 
-header h1{
-    padding: 50px;
-    font-size: 30px;
-    text-align: center;
-}
-
-table {
-    padding: 20px;
+.container {
+    margin: auto;
     position: relative;
+    padding: 25px;
+}
+
+.displayBox {
+    position: relative;
+}
+
+.container-table {
+    margin: auto;
+    position: relative;
+    background-color: white;
+    border: 1px solid black;
+    height: 500px;
+    width: 667px;
+    overflow: hidden;
     text-align: center;
 }
 
-td {
-    padding: 10px;
-    height: 10px;
-    widows: 10px;
+.practiceDiv {
+    padding: 30px;
     border: 1px solid black;
 }
 
+header h1{
+    padding: 50px;
+    font-size: 30px;
+}
+
+.divTable {
+    padding: 0px;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+}
+
+td {
+    padding: 30px;
+    height: 10px;
+    widows: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+.node-non-threat {
+    color: black;
+}
+
+.node-threat {
+    color: red;
+}
+
 .dot {
-    border: solid green;
-    height: 25px;
-    width: 25px;
     background-color: white;
     border-radius: 50%;
     display: inline-block;
+    font-size: 26px;
+    color: green;
 }
+
+.dot:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.dot-clicked {
+    color: red;
+}
+
 
 
 
