@@ -6,47 +6,78 @@ var errors = 0;
 var startTime = 0;
 var stopTime = 0;
 var StartClicked = false;
+var tutorialPassed = false;
+var tutorialValue = 4;
+var inGame = false;
 var formCounter = 0;
 var divTable_id = document.getElementById("divTable");
-var table_id = document.getElementById("table")
+var table_id = document.getElementById("table");
+
+function tutorial() {
+    if (StartClicked == false){
+        console.log("on load function");
+        /*list of ids that need node-threat onload
+        1-2, 2-3, 3-5, 4-3, 4-6, 5-1, 5-2, 5-5*/
+        var nodeArray = ["1-2", "2-3", "3-1", "3-2", "3-5", "4-3", "4-6",
+        "5-1", "5-2", "5-5", "6-0", "6-3"]
+        nodeArray.forEach(item => document.getElementById(item).classList.add('node-threat'));
+    }
+};
 
 $(document).ready(function(){
     //moves the position of the table to the top
     function moveTable(px) {
+        var bottomTblPx = -165
+        if (StartClicked == true){
+            bottomTblPx = -1725
+        }
         var top = 0;
         top = $('.divTable').position().top;
         var intPx = parseInt(px)
         result = top+px
-        $('.divTable').css("top", result, "px");
+        if (result < 1 && result > bottomTblPx){
+            $('.divTable').css("top", result, "px");
+        }
     }
+
+    $(btnStart).bind('click', function(){
+        $('.divTable').css("top", 0, "px");
+    })
+
+    $(btnDone).bind('click', function(){
+        if (tutorialPassed == false) {
+            console.log("done button pressed")
+            console.log(tutorialValue);
+            tutorial_p.innerHTML = "YOU HAVE NOT COMPLETED THE TUTORIAL! KEEP GOING"
+            if (tutorialValue == 0){
+                tutorial_p.innerHTML = "YOU HAVE SUCCESFULLY COMPLETED THE TUTORIAL" +
+                "<br> PRESS START TO BEGIN";
+                tutorialPassed = true;
+                mode.innerHTML = "PRESS START"
+            }
+        }
+    })
     
-    // P key : next page function
     $(document).keydown(function(e){
         if (e.keyCode == 80) {
             $('.divTable').css("top", 0, "px");
             if ((StartClicked == true) && (formCounter < 12)){
                 formCounter++
-                console.log("next button clicked");
-                console.log("from counter " + formCounter);
                 for (var i = 0; i < 25; i++){
                     if (window.currentForm.conditionsDanger[i] == true){
                         if (window.currentForm.userInputs[i] == true){
                             CorrectAns_True++;
-                            //console.log("CorrectAns_True++")
                         }
                         else{ 
                             omissions++;
-                            //console.log("omissions++")
                         }
                     }
                     else{
                         if(window.currentForm.userInputs[i] == true){
                             errors++;
-                            //console.log("errors++")
                         }
                         else{
                             CorrectAns_False++;
-                            //console.log("CorrectAns_False++")
                         }
                     }
                 }
@@ -54,124 +85,203 @@ $(document).ready(function(){
                 window.initiate();
             }
             else {
-                console.log("errors " + errors);
-                console.log("omissions " + omissions);
                 stopTime = Date.now();
-                var result = Math.floor((stopTime - startTime)/1000)
-                console.log("time result: " + result);
-                console.log("score breakdown...")
-                var judgmentError = ((errors*10) + (omissions*10))
-                console.log("a total error score of " + judgmentError.toString());
-                console.log("time = " + result);
-                var score = (result + judgmentError).toString();
-                console.log("total score: " + score);
-                document.getElementById("demo").innerHTML = "Score: " + score;
+                mode.innerHTML = "TEST COMPLETE"
+                mode.classList.remove('blinking-text');
+                var result = Math.floor((stopTime - startTime)/1000);
+                var judgmentError = ((errors*10) + (omissions*10));
+                var score = result + judgmentError;
+                document.getElementById("breakdown").innerHTML = "Score breakdown: <br>" +
+                "Errors: " + judgmentError.toString() + 
+                "<br> + Time: " + result.toString() + "<br> = Score: " + score.toString();
+                if (score < 350){
+                    analysis.innerHTML = "astonishing performance";
+                    excellent.classList.add('indicator-active')
+                }
+                else if (score < 550){
+                    analysis.innerHTML = "your performance is fair";
+                    fair.classList.add('indicator-active')
+                }
+                else{
+                    analysis.innerHTML = "your performance was poor; you are unfit for service as a streetcar motorman"
+                    poor.classList.add('indicator-active')
+                }
             }
         }
     })
 
-    // W key & S key : Page up & down function
     $(document).keypress(function(e){
         console.log(e.keyCode)
-        if (e.keyCode == 119) {
-            /*try and reduce the blur when scrolling by having the table move 0.1px frequently.*/
-            for (var i=0; i < 50; i++) {
-                moveTable(-0.1);
-            } 
-        }
         if (e.keyCode == 115) {
-            for (var i=0; i < 50; i++) {
-                moveTable(0.1);
-            } 
+            for (var i = 0; i < 5; i++){
+                moveTable(-1);
+            }
+        }
+        if (e.keyCode == 119) {
+            for (var i = 0; i < 5; i++){
+                moveTable(1);
+            }
         }
     })
 });
 
-/* Hold whether the condition is dangerous or not, also holds the user answer
-for later comparison*/
 function form() {
     this.conditionsDanger = new Array();
     this.userInputs = new Array(26).fill(false);
 }
 
-/* adding red dots and initialising user input array,
-hard coding all 512 buttons is inefficient,
-looking for a way to create 512 buttons with unique identifiers */
-
 condition0.addEventListener('click', function() {
-    if (currentForm.userInputs[0] == true){
-        condition0.classList.remove('dot-clicked');
-        currentForm.userInputs[0] = false;
-    }
-    else{
-        condition0.classList.add('dot-clicked');
-        currentForm.userInputs[0] = true;
+    if (StartClicked == true){
+        if (currentForm.userInputs[0] == true){
+            condition0.classList.remove('dot-clicked');
+            currentForm.userInputs[0] = false;
+        }
+        else{
+            condition0.classList.add('dot-clicked');
+            currentForm.userInputs[0] = true;
+        }
     }
 })
 
 condition1.addEventListener('click', function() {
-    if (currentForm.userInputs[1] == true){
-        condition1.classList.remove('dot-clicked');
-        currentForm.userInputs[1] = false;
+    if (StartClicked == true){
+        if (currentForm.userInputs[1] == true){
+            condition1.classList.remove('dot-clicked');
+            currentForm.userInputs[1] = false;
+        }
+        else{
+            condition1.classList.add('dot-clicked');
+            currentForm.userInputs[1] = true;
+        }
     }
     else{
         condition1.classList.add('dot-clicked');
-        currentForm.userInputs[1] = true;
+        tutorialValue--;
+    }
+})
+
+condition1.addEventListener('mouseover', function() {
+    if (StartClicked == false) {
+        document.getElementById("1-2").classList.add('blinking');
+    }
+})
+
+condition1.addEventListener('mouseleave', function(){
+    if (StartClicked == false) {
+        document.getElementById("1-2").classList.remove('blinking')
     }
 })
 
 condition2.addEventListener('click', function() {
-    if (currentForm.userInputs[2] == true){
-        condition2.classList.remove('dot-clicked');
-        currentForm.userInputs[2] = false;
-    }
-    else{
-        condition2.classList.add('dot-clicked');
-        currentForm.userInputs[2] = true;
+    if (StartClicked == true){
+        if (currentForm.userInputs[2] == true){
+            condition2.classList.remove('dot-clicked');
+            currentForm.userInputs[2] = false;
+        }
+        else{
+            condition2.classList.add('dot-clicked');
+            currentForm.userInputs[2] = true;
+        }
     }
 })
 
 condition3.addEventListener('click', function() {
-    if (currentForm.userInputs[3] == true){
-        condition3.classList.remove('dot-clicked');
-        currentForm.userInputs[3] = false;
-    }
-    else{
-        condition3.classList.add('dot-clicked');
-        currentForm.userInputs[3] = true;
+    if (StartClicked == true){
+        if (currentForm.userInputs[3] == true){
+            condition3.classList.remove('dot-clicked');
+            currentForm.userInputs[3] = false;
+        }
+        else{
+            condition3.classList.add('dot-clicked');
+            currentForm.userInputs[3] = true;
+        }
     }
 })
 
 condition4.addEventListener('click', function() {
-    if (currentForm.userInputs[4] == true){
-        condition4.classList.remove('dot-clicked');
-        currentForm.userInputs[4] = false;
+    if (StartClicked ==true){
+        if (currentForm.userInputs[4] == true){
+            condition4.classList.remove('dot-clicked');
+            currentForm.userInputs[4] = false;
+        }
+        else{
+            condition4.classList.add('dot-clicked');
+            currentForm.userInputs[4] = true;
+        }
     }
     else{
         condition4.classList.add('dot-clicked');
-        currentForm.userInputs[4] = true;
+        tutorialValue--;
+    } 
+})
+
+condition4.addEventListener('mouseover', function(){
+    if (StartClicked == false){
+        document.getElementById("4-6").classList.add('blinking');
+    }
+})
+
+condition4.addEventListener('mouseleave', function(){
+    if (StartClicked == false){
+        document.getElementById("4-6").classList.remove('blinking');
     }
 })
 
 condition5.addEventListener('click', function() {
-    if (currentForm.userInputs[5] == true){
-        condition5.classList.remove('dot-clicked');
-        currentForm.userInputs[5] = false;
+    if (tutorialPassed ==true){
+        if (currentForm.userInputs[5] == true){
+            condition5.classList.remove('dot-clicked');
+            currentForm.userInputs[5] = false;
+        }
+        else{
+            condition5.classList.add('dot-clicked');
+            currentForm.userInputs[5] = true;
+        }
     }
     else{
         condition5.classList.add('dot-clicked');
-        currentForm.userInputs[5] = true;
+        tutorialValue--;
+    } 
+})
+
+condition5.addEventListener('mouseover', function(){
+    if (StartClicked == false){
+        document.getElementById("5-5").classList.add('blinking');
+    }
+})
+
+condition5.addEventListener('mouseleave', function(){
+    if (StartClicked == false){
+        document.getElementById("5-5").classList.remove('blinking');
     }
 })
 
 condition6.addEventListener('click', function() {
-    if (currentForm.userInputs[6] == true){
-        condition6.classList.remove('dot-clicked');
-        currentForm.userInputs[6] = false;
+    if (tutorialPassed ==true){
+        if (currentForm.userInputs[6] == true){
+            condition6.classList.remove('dot-clicked');
+            currentForm.userInputs[6] = false;
+        }
+        else{
+            condition6.classList.add('dot-clicked');
+            currentForm.userInputs[6] = true;
+        }
     }
     else{
         condition6.classList.add('dot-clicked');
-        currentForm.userInputs[6] = true;
+        tutorialValue--;
+    } 
+})
+
+condition6.addEventListener('mouseover', function(){
+    if (StartClicked == false){
+        document.getElementById("6-3").classList.add('blinking');
+    }
+})
+
+condition6.addEventListener('mouseleave', function(){
+    if (StartClicked == false){
+        document.getElementById("6-3").classList.remove('blinking');
     }
 })
 
@@ -383,51 +493,35 @@ condition25.addEventListener('click', function() {
         currentForm.userInputs[25] = true;
     }
 })
-//end 
 
 //removes the dot-clicked css code from all buttons
 function clearRedDots() {
-    condition0.classList.remove('dot-clicked');
-    condition1.classList.remove('dot-clicked');
-    condition2.classList.remove('dot-clicked');
-    condition3.classList.remove('dot-clicked');
-    condition4.classList.remove('dot-clicked');
-    condition5.classList.remove('dot-clicked');
-    condition6.classList.remove('dot-clicked');
-    condition7.classList.remove('dot-clicked');
-    condition8.classList.remove('dot-clicked');
-    condition9.classList.remove('dot-clicked');
-    condition10.classList.remove('dot-clicked');
-    condition11.classList.remove('dot-clicked');
-    condition12.classList.remove('dot-clicked');
-    condition13.classList.remove('dot-clicked');
-    condition14.classList.remove('dot-clicked');
-    condition15.classList.remove('dot-clicked');
-    condition16.classList.remove('dot-clicked');
-    condition17.classList.remove('dot-clicked');
-    condition18.classList.remove('dot-clicked');
-    condition19.classList.remove('dot-clicked');
-    condition20.classList.remove('dot-clicked');
-    condition21.classList.remove('dot-clicked');
-    condition22.classList.remove('dot-clicked');
-    condition23.classList.remove('dot-clicked');
-    condition24.classList.remove('dot-clicked');
-    condition25.classList.remove('dot-clicked');
+    var conditionArray = [...Array(26).keys()];
+    conditionArray.forEach(item => removeDotClicked(item));
+    function removeDotClicked(item){
+        id = "condition" + item
+        document.getElementById(id).classList.remove("dot-clicked");
+    }
 }
 
 btnStart.addEventListener('click', function() {
     if (window.StartClicked == false) {
         formCounter++;
+        var conditionArray = [...Array(26).keys()];
         startTime = Date.now();
         window.StartClicked = true;
         console.log(StartClicked)
+        window.clearRedDots();
         window.initiate();
-    }
+        mode.innerHTML = "IN TEST";
+        mode.classList.add('blinking-text');
+        tutorial_p.innerHTML = "";
+    }   
 })
 
-/* A function to inititate every new form, populating the table with numbers*/
 function initiate() {
     currentForm = new form();
+    var totalDangers = 0;
     for (var i = 0; i < 26; i++) {
         var con1 = new condition();
         var btnid = "condition" + i.toString();
@@ -449,53 +543,8 @@ function initiate() {
             }
         }
     }
-}
 
-btnNext.addEventListener('click', function() {
-    if ((StartClicked == true) && (formCounter < 12)){
-        formCounter++
-        console.log("next button clicked");
-        console.log("from counter " + formCounter);
-        for (var i = 0; i < 25; i++){
-            if (window.currentForm.conditionsDanger[i] == true){
-                if (window.currentForm.userInputs[i] == true){
-                    CorrectAns_True++;
-                    //console.log("CorrectAns_True++")
-                }
-                else{ 
-                    omissions++;
-                    //console.log("omissions++")
-                }
-            }
-            else{
-                if(window.currentForm.userInputs[i] == true){
-                    errors++;
-                    //console.log("errors++")
-                }
-                else{
-                    CorrectAns_False++;
-                    //console.log("CorrectAns_False++")
-                }
-            }
-        }
-        window.clearRedDots();
-        window.initiate();
-    }
-    else {
-        console.log("errors " + errors);
-        console.log("omissions " + omissions);
-        stopTime = Date.now();
-        var result = Math.floor((stopTime - startTime)/1000)
-        console.log("time result: " + result);
-        console.log("score breakdown...")
-        var judgmentError = ((errors*10) + (omissions*10))
-        console.log("a total error score of " + judgmentError.toString());
-        console.log("time = " + result);
-        var score = (result + judgmentError).toString();
-        console.log("total score: " + score);
-        document.getElementById("demo").innerHTML = "Score: " + score;
-    }
-})
+}
 
 function node() {
     this.num = Math.floor(Math.random() * 3) + 1

@@ -1,110 +1,117 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="motormanstyle.css"> 
     <head>
-        
+        <link rel="stylesheet" type="text/css" href="motormanstyle.css">
     </head>
-    <body>
+    <body onload="tutorial()">
         <div class = "container">
-            <header>
-                <h1>Motorman Interactive</h1>
-            </header>
             <div class="displayBox">
-                <p id="demo">W & S keys control Movement
-                <br>Q to go to the next page</p>
+                <div class="displayBoxColxs">
+                    <h1>KEYBOARD CONTROLS</h1>
+                    <table class="keyboard-controls">
+                        <tr>
+                            <td style="font-weight: bold;">W / S</td>
+                            <td style="float: left; ">UP / DOWN</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">P</td>
+                            <td style="float: left;">NEXT PAGE</td>
+                        </tr>
+                    </table>
+                    <h2 id="mode">TUTORIAL</h2>
+                    <p id="tutorial_p"></p>
+                </div>
             </div>
             <div class="buttons">
-                <button id="btnStart">start</button>
-                <button id="btnNext">next</button>
-                <button id="btnStartTime">startTime</button>
-                <button id="btnStopTime">stopTime</button>
+                <button id="btnDone" class="button btnDone">DONE</button>
+                <button id="btnStart" class="button btnDone">START</button>
             </div>
             <div class = "container-table">
                 <div class = "table">
                     <table id="table" class="divTable">
                         <!--row 0-->
                         <tr>
-                            <td><span id="0-0" class="node">0</span></td>
-                            <td><span id="0-1" class="node">0</span></td>
-                            <td><span id="0-2" class="node">0</span></td>
-                            <td><span id="0-3" class="node">0</span></td>
-                            <td><span id=condition0 class="dot">-</span></td>
-                            <td><span id="0-4" class="node">0</span></td>
-                            <td><span id="0-5" class="node">0</span></td>
-                            <td><span id="0-6" class="node">0</span></td>
-                            <td><span id="0-7" class="node">0</span></td>
+                            <td><span id="0-0" class="node">2</span></td>
+                            <td><span id="0-1" class="node">3</span></td>
+                            <td><span id="0-2" class="node">2</span></td>
+                            <td><span id="0-3" class="node">1</span></td>
+                            <td><span id=condition0 class="dot">A</span></td>
+                            <td><span id="0-4" class="node">1</span></td>
+                            <td><span id="0-5" class="node">2</span></td>
+                            <td><span id="0-6" class="node">3</span></td>
+                            <td><span id="0-7" class="node">2</span></td>
                         </tr>
                         <!--row 1-->
                         <tr>
-                            <td><span id="1-0" class="node">0</span></td>
-                            <td><span id="1-1" class="node">0</span></td>
-                            <td><span id="1-2" class="node">0</span></td>
-                            <td><span id="1-3" class="node">0</span></td>
-                            <td><span id="condition1" class="dot">-</span></td>
-                            <td><span id="1-4" class="node">0</span></td>
-                            <td><span id="1-5" class="node">0</span></td>
-                            <td><span id="1-6" class="node">0</span></td>
-                            <td><span id="1-7" class="node">0</span></td>
+                            <td><span id="1-0" class="node">1</span></td>
+                            <td><span id="1-1" class="node">2</span></td>
+                            <td><span id="1-2" class="node">2</span></td>
+                            <td><span id="1-3" class="node">3</span></td>
+                            <td><span id="condition1" class="dot">B</span></td>
+                            <td><span id="1-4" class="node">3</span></td>
+                            <td><span id="1-5" class="node">1</span></td>
+                            <td><span id="1-6" class="node">3</span></td>
+                            <td><span id="1-7" class="node">1</span></td>
                         </tr>
                         <!--row 2-->
                         <tr>
-                            <td><span id="2-0" class="node">0</span></td>
-                            <td><span id="2-1" class="node">0</span></td>
-                            <td><span id="2-2" class="node">0</span></td>
-                            <td><span id="2-3" class="node">0</span></td>
-                            <td><span id="condition2" class="dot">-</span></td>
-                            <td><span id="2-4" class="node">0</span></td>
-                            <td><span id="2-5" class="node">0</span></td>
-                            <td><span id="2-6" class="node">0</span></td>
-                            <td><span id="2-7" class="node">0</span></td>
+                            <td><span id="2-0" class="node">3</span></td>
+                            <td><span id="2-1" class="node">2</span></td>
+                            <td><span id="2-2" class="node">1</span></td>
+                            <td><span id="2-3" class="node">3</span></td>
+                            <td><span id="condition2" class="dot">C</span></td>
+                            <td><span id="2-4" class="node">2</span></td>
+                            <td><span id="2-5" class="node">1</span></td>
+                            <td><span id="2-6" class="node">1</span></td>
+                            <td><span id="2-7" class="node">2</span></td>
                         </tr>
                         <!--row 3-->
                         <tr>
-                            <td><span id="3-0" class="node">0</span></td>
-                            <td><span id="3-1" class="node">0</span></td>
-                            <td><span id="3-2" class="node">0</span></td>
-                            <td><span id="3-3" class="node">0</span></td>
-                            <td><span id="condition3" class="dot">-</span></td>
-                            <td><span id="3-4" class="node">0</span></td>
-                            <td><span id="3-5" class="node">0</span></td>
-                            <td><span id="3-6" class="node">0</span></td>
-                            <td><span id="3-7" class="node">0</span></td>
+                            <td><span id="3-0" class="node">3</span></td>
+                            <td><span id="3-1" class="node">2</span></td>
+                            <td><span id="3-2" class="node">3</span></td>
+                            <td><span id="3-3" class="node">1</span></td>
+                            <td><span id="condition3" class="dot">D</span></td>
+                            <td><span id="3-4" class="node">3</span></td>
+                            <td><span id="3-5" class="node">1</span></td>
+                            <td><span id="3-6" class="node">2</span></td>
+                            <td><span id="3-7" class="node">1</span></td>
                         </tr>
                         <!--row 4-->
                         <tr>
-                            <td><span id="4-0" class="node">0</span></td>
-                            <td><span id="4-1" class="node">0</span></td>
-                            <td><span id="4-2" class="node">0</span></td>
-                            <td><span id="4-3" class="node">0</span></td>
-                            <td><span id="condition4" class="dot">-</span></td>
-                            <td><span id="4-4" class="node">0</span></td>
-                            <td><span id="4-5" class="node">0</span></td>
-                            <td><span id="4-6" class="node">0</span></td>
-                            <td><span id="4-7" class="node">0</span></td>
+                            <td><span id="4-0" class="node">2</span></td>
+                            <td><span id="4-1" class="node">3</span></td>
+                            <td><span id="4-2" class="node">1</span></td>
+                            <td><span id="4-3" class="node">2</span></td>
+                            <td><span id="condition4" class="dot">E</span></td>
+                            <td><span id="4-4" class="node">3</span></td>
+                            <td><span id="4-5" class="node">1</span></td>
+                            <td><span id="4-6" class="node">3</span></td>
+                            <td><span id="4-7" class="node">2</span></td>
                         </tr>
                         <!--row 5-->
                         <tr>
-                            <td><span id="5-0" class="node">0</span></td>
-                            <td><span id="5-1" class="node">0</span></td>
-                            <td><span id="5-2" class="node">0</span></td>
-                            <td><span id="5-3" class="node">0</span></td>
-                            <td><span id="condition5" class="dot">-</span></td>
-                            <td><span id="5-4" class="node">0</span></td>
-                            <td><span id="5-5" class="node">0</span></td>
-                            <td><span id="5-6" class="node">0</span></td>
-                            <td><span id="5-7" class="node">0</span></td>
+                            <td><span id="5-0" class="node">1</span></td>
+                            <td><span id="5-1" class="node">2</span></td>
+                            <td><span id="5-2" class="node">3</span></td>
+                            <td><span id="5-3" class="node">1</span></td>
+                            <td><span id="condition5" class="dot">F</span></td>
+                            <td><span id="5-4" class="node">1</span></td>
+                            <td><span id="5-5" class="node">2</span></td>
+                            <td><span id="5-6" class="node">3</span></td>
+                            <td><span id="5-7" class="node">1</span></td>
                         </tr>
                         <!--row 6-->
                         <tr>
-                            <td><span id="6-0" class="node">0</span></td>
-                            <td><span id="6-1" class="node">0</span></td>
-                            <td><span id="6-2" class="node">0</span></td>
-                            <td><span id="6-3" class="node">0</span></td>
-                            <td><span id="condition6" class="dot">-</span></td>
-                            <td><span id="6-4" class="node">0</span></td>
-                            <td><span id="6-5" class="node">0</span></td>
-                            <td><span id="6-6" class="node">0</span></td>
-                            <td><span id="6-7" class="node">0</span></td>
+                            <td><span id="6-0" class="node">3</span></td>
+                            <td><span id="6-1" class="node">2</span></td>
+                            <td><span id="6-2" class="node">1</span></td>
+                            <td><span id="6-3" class="node">1</span></td>
+                            <td><span id="condition6" class="dot">G</span></td>
+                            <td><span id="6-4" class="node">2</span></td>
+                            <td><span id="6-5" class="node">2</span></td>
+                            <td><span id="6-6" class="node">1</span></td>
+                            <td><span id="6-7" class="node">3</span></td>
                         </tr>
                         <!--row 7-->
                         <tr>
@@ -337,8 +344,16 @@
                     </table>
                 </div>
             </div>
-        </div>
+            <div class="indicator-row"> 
+                    <div id="excellent" class="indicator_column left">
+                        </div>
+                    <div id="fair" class="indicator_column middle">
+                    </div>
+                    <div id="poor" class="indicator_column right">
+                        </div>
+                </div>
+        </div> <!--end of container-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="motorman.js" charset="utf-8"></script>
+    <script src="motorman.js" charsSet="utf-8"></script>
     </body>
 </html>
